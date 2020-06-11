@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         final MyAdapter adapter = new MyAdapter(this);
         recyclerView.setAdapter(adapter);
 
+        //使用Retrofit来获取视频信息
         OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
         OkHttpClient client = builder.build();
         Retrofit retrofit = new Retrofit.Builder()
@@ -106,6 +107,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.VH> {
             holder.descriptionTextView.setText(item.getDescription());
             String text = "用户名：" + item.getNickname() + " 赞数：" + item.getLikecount();
             holder.likeTextView.setText(text);
+            //使用Glide来加载封面图片
             Glide.with(mContext).load(item.getAvatar()).into(holder.basicImageView);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
